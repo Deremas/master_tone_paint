@@ -19,6 +19,12 @@ export async function GET({ params }: { params: { slug?: string } }) {
     const body = await fs.readFile(file);
     return new Response(body, { headers: { "Content-Type": "image/png", "Cache-Control": "public, max-age=31536000, immutable" } });
   } catch {
-    return new Response("Not found", { status: 404 });
+    const fallback = path.join(process.cwd(), "public", "assets", "master-tone-paint.jpg");
+    try {
+      const body = await fs.readFile(fallback);
+      return new Response(body, { headers: { "Content-Type": "image/jpeg", "Cache-Control": "public, max-age=31536000, immutable" } });
+    } catch {
+      return new Response("Not found", { status: 404 });
+    }
   }
 }
