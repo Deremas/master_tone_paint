@@ -1,0 +1,95 @@
+---
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { company, seo } from '../data/content';
+import '../styles/global.css';
+
+type Props = {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+};
+
+const {
+  title,
+  description = seo.homeDescription,
+  canonicalPath = Astro.url.pathname
+} = Astro.props as Props;
+
+const siteUrl = Astro.site?.toString() ?? 'https://example.com';
+const canonical = new URL(canonicalPath, siteUrl).toString();
+const socialImage = new URL('/assets/photos/home-hero.png', siteUrl).toString();
+const fullTitle = title ? `${title} | ${company.name}` : `${company.name} | Paint & Decorative Coating Manufacturer`;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: company.name,
+  description: company.shortDescription,
+  url: siteUrl,
+  foundingDate: company.foundedDate,
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Ayat, Addis Ababa',
+    addressCountry: 'ET'
+  }
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#102d4e" />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:site_name" content={company.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>{fullTitle}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      const revealTargets = document.querySelectorAll<HTMLElement>('[data-reveal]');
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            }
+          },
+          { threshold: 0.08 }
+        );
+
+        revealTargets.forEach((target) => observer.observe(target));
+      } else {
+        revealTargets.forEach((target) => target.classList.add('is-visible'));
+      }
+    </script>
+  </body>
+</html>

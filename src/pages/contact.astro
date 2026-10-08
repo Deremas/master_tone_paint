@@ -1,0 +1,193 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { company, contactImage, contactTopics, seo } from '../data/content';
+---
+<Base title="Contact" description={seo.contactDescription}>
+  <PageHero
+    eyebrow="Contact Master Tone Paint"
+    title="Let's Bring Your Project to Life."
+    intro="Contact Master Tone Paint for product information, wholesale inquiries and decorative coating requirements."
+  />
+
+  <section class="section">
+    <div class="container contact-grid">
+      <div class="contact-stack" data-reveal>
+        <article class="contact-card">
+          <div class="photo-frame photo-frame--contact">
+            <img
+              src={`/assets/photos/${contactImage.imageSlug}.png`}
+              alt={contactImage.imageAlt}
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+
+          <div class="eyebrow" style="margin-top: 1.25rem;">
+            <span class="eyebrow-dot"></span>
+            Company Location
+          </div>
+          <h2>Ayat, Addis Ababa</h2>
+          <p>Wholesale inquiries are welcome for general paint, metal paint, and decorative quartz wall coatings.</p>
+          <p>{company.location}</p>
+
+          {company.phone && (
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">☎</div>
+              <div>
+                <strong>Phone</strong>
+                <p>{company.phone}</p>
+              </div>
+            </div>
+          )}
+
+          {company.email && (
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">✉</div>
+              <div>
+                <strong>Email</strong>
+                <p>{company.email}</p>
+              </div>
+            </div>
+          )}
+        </article>
+      </div>
+
+      <form class="contact-form" id="inquiry-form" action="/api/contact.php" method="post" data-reveal>
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Inquiry Form
+          </div>
+          <h2>Send Message</h2>
+          <p>Tell us what you need and we will follow up on the product category or wholesale inquiry.</p>
+        </div>
+
+        <div class="form-grid">
+          <div class="field field-full">
+            <label for="name">Full name <span>*</span></label>
+            <input id="name" name="name" type="text" autocomplete="name" required minlength="2" maxlength="120" />
+          </div>
+
+          <div class="field">
+            <label for="email">Email <span>*</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" required maxlength="254" />
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="35" />
+          </div>
+
+          <div class="field field-full">
+            <label for="product">Product interest</label>
+            <select id="product" name="product">
+              {contactTopics.map((topic) => (
+                <option value={topic.value}>{topic.label}</option>
+              ))}
+            </select>
+          </div>
+
+          <div class="field field-full">
+            <label for="message">Message <span>*</span></label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              minlength="10"
+              maxlength="3000"
+              placeholder="Tell us about the products you need, the quantity you are considering, or any other details that help us respond well."
+            ></textarea>
+          </div>
+        </div>
+
+        <div class="honeypot" aria-hidden="true">
+          <label for="website">Website</label>
+          <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit" id="contact-submit">Send Message</button>
+          <p class="form-status" id="contact-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('inquiry-form') as HTMLFormElement | null;
+    const status = document.getElementById('contact-status');
+    const submitButton = document.getElementById('contact-submit') as HTMLButtonElement | null;
+    const productField = document.getElementById('product') as HTMLSelectElement | null;
+    const url = new URL(window.location.href);
+    const selectedProduct = url.searchParams.get('product');
+    const normalizedProduct = selectedProduct === 'decorative-quartz-coating' ? 'decorative-quartz' : selectedProduct;
+
+    const validProductValues = new Set([
+      '',
+      'general-paint',
+      'metal-paint',
+      'decorative-quartz',
+      'decorative-quartz-coating',
+      'wholesale-inquiry',
+      'other'
+    ]);
+
+    if (productField && normalizedProduct && validProductValues.has(normalizedProduct)) {
+      productField.value = normalizedProduct;
+    }
+
+    const setStatus = (message: string, state: 'idle' | 'success' | 'error' = 'idle') => {
+      if (!status) return;
+
+      status.textContent = message;
+      status.dataset.state = state;
+    };
+
+    form?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!form || !submitButton) return;
+
+      if (!form.reportValidity()) {
+        setStatus('Please check the highlighted fields and try again.', 'error');
+        return;
+      }
+
+      setStatus('Sending your message...');
+      submitButton.disabled = true;
+      submitButton.setAttribute('aria-busy', 'true');
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: {
+            Accept: 'application/json'
+          }
+        });
+
+        const payload = await response.json().catch(() => null);
+
+        if (!response.ok || !payload?.ok) {
+          throw new Error(payload?.message || 'We could not send your message. Please try again later.');
+        }
+
+        form.reset();
+
+        if (productField && normalizedProduct && validProductValues.has(normalizedProduct)) {
+          productField.value = normalizedProduct;
+        }
+
+        setStatus(payload.message || 'Your message was sent successfully.', 'success');
+      } catch (error) {
+        setStatus(
+          error instanceof Error ? error.message : 'We could not send your message. Please try again later.',
+          'error'
+        );
+      } finally {
+        submitButton.disabled = false;
+        submitButton.removeAttribute('aria-busy');
+      }
+    });
+  </script>
+</Base>

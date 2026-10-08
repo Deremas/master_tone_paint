@@ -1,0 +1,140 @@
+---
+import Base from '../layouts/Base.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { homeApplications, homeHighlights, products, stats } from '../data/content';
+---
+<Base title="Home" description={homeHighlights.hero.description}>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-copy" data-reveal>
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          MASTER TONE PAINT · ADDIS ABABA
+        </div>
+        <h1>{homeHighlights.hero.title}</h1>
+        <p>{homeHighlights.hero.description}</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="/products/">Explore Products</a>
+          <a class="btn btn-secondary" href="/contact/#inquiry-form">Contact Us</a>
+        </div>
+      </div>
+
+      <div class="photo-frame photo-frame--hero" data-reveal>
+        <img
+          src="/assets/photos/home-hero.png"
+          alt="Bright painted interior with warm natural light"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="stats-grid">
+        {stats.map((stat) => (
+          <article class="stat-card" data-reveal>
+            <strong>{stat.value}</strong>
+            <span>{stat.label}</span>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-title" data-reveal>
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Our Products
+          </div>
+          <h2>Three product categories for trade buyers.</h2>
+        </div>
+        <p>Clear product ranges, simple inquiry links, and a direct path to wholesale conversations.</p>
+      </div>
+
+      <div class="product-grid">
+        {products.map((product) => (
+          <ProductCard product={product} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container about-split" data-reveal>
+      <div class="story-panel">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          About Master Tone
+        </div>
+        <h2>{homeHighlights.about.title}</h2>
+        <p>{homeHighlights.about.paragraphOne}</p>
+        <p>{homeHighlights.about.paragraphTwo}</p>
+        <a class="btn btn-primary" href="/about/">Learn More</a>
+      </div>
+
+      <div class="photo-frame photo-frame--tall">
+        <img
+          src="/assets/photos/about-manufacturing.png"
+          alt="Industrial paint manufacturing environment"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-title" data-reveal>
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Applications
+          </div>
+          <h2>Explore the possibilities of color and texture.</h2>
+        </div>
+      </div>
+
+      <div class="application-grid">
+        {homeApplications.map((application) => (
+          <article class="application-card" data-reveal>
+            <div class="photo-frame photo-frame--application">
+              <img
+                src={`/assets/photos/${application.imageSlug}.png`}
+                alt={application.imageAlt}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="application-body">
+              <h3>{application.title}</h3>
+              <p>{application.caption}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-navy">
+    <div class="container callout-split" data-reveal>
+      <div>
+        <div class="eyebrow light">
+          <span class="eyebrow-dot"></span>
+          Wholesale CTA
+        </div>
+        <h2>Looking for Paint Products in Bulk?</h2>
+        <p>Get in touch with Master Tone Paint to discuss product requirements and wholesale supply.</p>
+      </div>
+      <div class="callout-actions">
+        <a class="btn btn-light" href="/contact/#inquiry-form">Request a Quote</a>
+        <a class="btn btn-secondary" href="/contact/#inquiry-form">Contact Us</a>
+      </div>
+    </div>
+  </section>
+</Base>

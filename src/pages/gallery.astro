@@ -1,0 +1,108 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import { galleryItems, seo } from '../data/content';
+---
+<Base title="Gallery" description={seo.galleryDescription}>
+  <PageHero
+    eyebrow="Gallery"
+    title="Applications & Inspiration"
+    intro="Discover how color, coatings and decorative textures can transform a variety of surfaces and spaces."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="gallery-grid">
+        {galleryItems.map((item, index) => (
+          <button
+            class="gallery-card"
+            type="button"
+            data-gallery-trigger
+            data-title={item.title}
+            data-caption={item.caption}
+            data-alt={item.imageAlt}
+            data-image={item.imageSlug}
+            aria-haspopup="dialog"
+            aria-label={`Open ${item.title}`}
+          >
+            <div class="photo-frame photo-frame--gallery">
+              <img
+                src={`/assets/photos/${item.imageSlug}.png`}
+                alt={item.imageAlt}
+                loading={index < 2 ? 'eager' : 'lazy'}
+                decoding="async"
+              />
+            </div>
+            <div class="gallery-body">
+              <h3>{item.title}</h3>
+              <p>{item.caption}</p>
+            </div>
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <dialog class="dialog-backdrop" id="gallery-dialog" aria-label="Gallery preview">
+    <div class="dialog-panel" id="gallery-dialog-panel">
+      <div class="photo-frame photo-frame--dialog">
+        <img id="gallery-dialog-image" alt="" />
+      </div>
+      <div class="dialog-content">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Preview
+        </div>
+        <h2 id="gallery-dialog-heading">Gallery item</h2>
+        <p id="gallery-dialog-description"></p>
+        <div class="dialog-actions">
+          <button class="btn btn-primary" type="button" data-gallery-close>Close</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    const dialog = document.getElementById('gallery-dialog') as HTMLDialogElement | null;
+    const dialogImage = document.getElementById('gallery-dialog-image') as HTMLImageElement | null;
+    const dialogHeading = document.getElementById('gallery-dialog-heading');
+    const dialogDescription = document.getElementById('gallery-dialog-description');
+    const closeButton = document.querySelector<HTMLButtonElement>('[data-gallery-close]');
+    const triggers = document.querySelectorAll<HTMLButtonElement>('[data-gallery-trigger]');
+
+    const openCard = (button: HTMLButtonElement) => {
+      if (!dialog || !dialogImage) return;
+
+      const title = button.dataset.title ?? 'Gallery item';
+      const caption = button.dataset.caption ?? '';
+      const alt = button.dataset.alt ?? '';
+      const image = button.dataset.image ?? '';
+
+      dialogImage.src = `/assets/photos/${image}.png`;
+      dialogImage.alt = alt;
+      if (dialogHeading) dialogHeading.textContent = title;
+      if (dialogDescription) dialogDescription.textContent = caption;
+
+      dialog.showModal();
+      closeButton?.focus();
+    };
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => openCard(trigger));
+    });
+
+    closeButton?.addEventListener('click', () => dialog?.close());
+
+    dialog?.addEventListener('click', (event) => {
+      if (event.target === dialog) {
+        dialog.close();
+      }
+    });
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && dialog?.open) {
+        dialog.close();
+      }
+    });
+  </script>
+</Base>

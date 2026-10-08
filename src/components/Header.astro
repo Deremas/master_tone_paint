@@ -1,0 +1,157 @@
+---
+import { company, navigation } from '../data/content';
+
+const currentPath = Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replace(/\/+$/, '/') || '/';
+const quoteHref = '/contact/#inquiry-form';
+
+const isCurrent = (href: string) => {
+  if (href === '/') {
+    return currentPath === '/';
+  }
+
+  return currentPath === href;
+};
+---
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/" aria-label={`${company.name} home`}>
+      <img
+        class="brand-logo"
+        src="/assets/master-tone-logo.png"
+        alt="Master Tone Paint"
+        loading="eager"
+        decoding="async"
+      />
+    </a>
+
+    <nav class="nav-desktop" aria-label="Main navigation">
+      {navigation.map((link) => (
+        <a
+          class:list={['nav-link', { active: isCurrent(link.href) }]}
+          href={link.href}
+          aria-current={isCurrent(link.href) ? 'page' : undefined}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn btn-primary header-cta" href={quoteHref}>
+        <span class="header-cta-label header-cta-label--desktop">Request a Quote</span>
+        <span class="header-cta-label header-cta-label--tablet">Request a Quote</span>
+        <span class="header-cta-label header-cta-label--mobile">Get a Quote</span>
+        <span class="header-cta-label header-cta-label--narrow">Quote</span>
+      </a>
+
+      <button
+        class="menu-button"
+        type="button"
+        aria-label="Open navigation"
+        aria-controls="mobile-nav-panel"
+        aria-haspopup="menu"
+        aria-expanded="false"
+      >
+        <span class="menu-icon" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav-layer" aria-hidden="true" data-open="false">
+  <div class="mobile-nav-backdrop" data-backdrop></div>
+  <div id="mobile-nav-panel" class="mobile-nav-panel" aria-hidden="true" inert>
+    <nav class="nav-mobile" aria-label="Mobile navigation">
+      {navigation.map((link) => (
+        <a class:list={['nav-link', { active: isCurrent(link.href) }]} href={link.href}>
+          {link.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</div>
+
+<script>
+  const header = document.querySelector<HTMLElement>('.site-header');
+  const menuButton = document.querySelector<HTMLButtonElement>('.menu-button');
+  const mobileLayer = document.querySelector<HTMLElement>('.mobile-nav-layer');
+  const mobilePanel = document.querySelector<HTMLElement>('#mobile-nav-panel');
+  const backdrop = document.querySelector<HTMLElement>('[data-backdrop]');
+  const mobileLinks = document.querySelectorAll<HTMLAnchorElement>('#mobile-nav-panel a');
+
+  if (mobileLayer?.parentElement !== document.body) {
+    document.body.appendChild(mobileLayer);
+  }
+
+  const updateHeaderHeight = () => {
+    if (!header) return;
+    document.documentElement.style.setProperty('--header-height', `${header.offsetHeight}px`);
+  };
+
+  const setScrollLock = (locked: boolean) => {
+    document.documentElement.dataset.navOpen = locked ? 'true' : 'false';
+    document.body.dataset.navOpen = locked ? 'true' : 'false';
+    document.documentElement.style.overflow = locked ? 'hidden' : '';
+    document.body.style.overflow = locked ? 'hidden' : '';
+  };
+
+  const setMenuState = (open: boolean) => {
+    if (!menuButton || !mobileLayer || !mobilePanel) return;
+
+    mobileLayer.dataset.open = String(open);
+    mobileLayer.setAttribute('aria-hidden', String(!open));
+    mobilePanel.setAttribute('aria-hidden', String(!open));
+    mobilePanel.toggleAttribute('inert', !open);
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    setScrollLock(open);
+  };
+
+  const openMenu = () => {
+    if (!menuButton || !mobileLayer || !mobilePanel) return;
+
+    updateHeaderHeight();
+    setMenuState(true);
+    window.requestAnimationFrame(() => mobileLinks[0]?.focus());
+  };
+
+  const closeMenu = () => {
+    if (!menuButton || !mobileLayer || !mobilePanel) return;
+
+    setMenuState(false);
+    menuButton.focus();
+  };
+
+  menuButton?.addEventListener('click', () => {
+    if (!mobileLayer) return;
+
+    if (mobileLayer.dataset.open === 'true') {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  backdrop?.addEventListener('click', closeMenu);
+  mobileLinks.forEach((link) => link.addEventListener('click', closeMenu));
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && mobileLayer?.dataset.open === 'true') {
+      closeMenu();
+    }
+  });
+
+  updateHeaderHeight();
+
+  window.addEventListener('resize', () => {
+    updateHeaderHeight();
+
+    if (window.innerWidth >= 1024 && mobileLayer?.dataset.open === 'true') {
+      closeMenu();
+    }
+  });
+</script>

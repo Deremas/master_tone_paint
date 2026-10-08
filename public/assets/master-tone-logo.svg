@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 180" role="img" aria-labelledby="title desc">
+  <title id="title">Master Tone Paint</title>
+  <desc id="desc">Vector wordmark placeholder for Master Tone Paint.</desc>
+  <rect width="560" height="180" rx="28" fill="#ffffff"/>
+  <g transform="translate(26 28)">
+    <rect x="0" y="0" width="124" height="124" rx="28" fill="#102d4e"/>
+    <path d="M20 94c18-2 29-13 34-29 4-13 9-27 27-35 15-6 31-2 42 10-8 1-15 5-21 11-8 9-12 21-16 33-5 15-14 25-29 31-12 4-24 4-37 0z" fill="#167ab8"/>
+    <circle cx="89" cy="37" r="13" fill="#e9a23b"/>
+    <path d="M26 104h73" stroke="#ffffff" stroke-opacity=".75" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(182 44)" fill="#102d4e">
+    <text x="0" y="38" font-family="Plus Jakarta Sans, Manrope, Arial, sans-serif" font-size="34" font-weight="800" letter-spacing="4">MASTER TONE</text>
+    <text x="0" y="84" font-family="Manrope, Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="8" fill="#27875a">PAINT</text>
+    <rect x="0" y="102" width="242" height="6" rx="3" fill="#e9a23b"/>
+  </g>
+</svg>

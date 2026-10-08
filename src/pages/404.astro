@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Page Not Found" description="The requested page could not be found. Return to Master Tone Paint's home page or contact the factory.">
+  <section class="error-shell">
+    <div class="container">
+      <article class="error-card" data-reveal>
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          404
+        </div>
+        <h1>Page not found</h1>
+        <p>
+          The page you requested does not exist. Use the links below to return to the website or continue to
+          the contact form.
+        </p>
+        <div class="error-actions">
+          <a class="btn btn-primary" href="/">Go Home</a>
+          <a class="btn btn-secondary" href="/contact/#inquiry-form">Contact Us</a>
+        </div>
+      </article>
+    </div>
+  </section>
+</Base>

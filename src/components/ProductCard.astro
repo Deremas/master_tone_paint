@@ -1,0 +1,39 @@
+---
+import type { ProductCardData } from '../data/content';
+
+type Props = {
+  product: ProductCardData;
+};
+
+const { product } = Astro.props as Props;
+const inquirySlug =
+  product.slug === 'decorative-quartz-coating' ? 'decorative-quartz' : product.slug;
+---
+<article class="product-card" data-reveal>
+  <div class="photo-frame photo-frame--product">
+    <img
+      src={`/assets/photos/${product.imageSlug}.png`}
+      alt={product.imageAlt}
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+
+  <div class="product-body">
+    <div class="tiny-label">Product</div>
+    <h3>{product.title}</h3>
+    <p>{product.description}</p>
+
+    {product.capacityValue && (
+      <div class="product-capacity">
+        <span>{product.capacityLabel}</span>
+        <strong>{product.capacityValue}</strong>
+      </div>
+    )}
+
+    <a class="text-link" href={`/contact/?product=${inquirySlug}#inquiry-form`}>
+      Inquire About This Product
+      <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</article>

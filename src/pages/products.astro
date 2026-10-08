@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { products, seo } from '../data/content';
+---
+<Base title="Products" description={seo.productsDescription}>
+  <PageHero
+    eyebrow="Our Products"
+    title="Our Products"
+    intro="Explore our range of general paint, metal paint, and decorative quartz wall coatings for a variety of finishing applications."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="product-grid">
+        {products.map((product) => (
+          <ProductCard product={product} />
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
