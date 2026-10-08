@@ -17,7 +17,7 @@ const isCurrent = (href: string) => {
     <a class="brand" href="/" aria-label={`${company.name} home`}>
       <img
         class="brand-logo"
-        src="/assets/master-tone-logo.png"
+        src="/assets/master-tone-paint.jpg"
         alt="Master Tone Paint"
         loading="eager"
         decoding="async"
@@ -83,7 +83,7 @@ const isCurrent = (href: string) => {
   const backdrop = document.querySelector<HTMLElement>('[data-backdrop]');
   const mobileLinks = document.querySelectorAll<HTMLAnchorElement>('#mobile-nav-panel a');
 
-  if (mobileLayer?.parentElement !== document.body) {
+  if (mobileLayer && mobileLayer.parentElement !== document.body) {
     document.body.appendChild(mobileLayer);
   }
 

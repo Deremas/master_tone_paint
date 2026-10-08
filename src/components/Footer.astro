@@ -22,8 +22,6 @@ import { company, footerLinks } from '../data/content';
       <h3 class="footer-heading">Contact</h3>
       <p>{company.location}</p>
       <a href="/contact/#inquiry-form">Send an Inquiry</a>
-      {company.phone && <a href={`tel:${company.phone.replace(/\s+/g, '')}`}>{company.phone}</a>}
-      {company.email && <a href={`mailto:${company.email}`}>{company.email}</a>}
     </div>
 
   </div>
