@@ -11,6 +11,10 @@ Production-oriented Astro website for Master Tone Paint, a paint and decorative 
 
 ## Local Setup
 
+Create a local `.env` file and set:
+
+- `SITE_URL`
+
 ```bash
 npm install
 npm run check
@@ -127,7 +131,7 @@ The handler will not claim success until the SMTP send actually succeeds. Test t
 
 ## Final Checklist Before Launch
 
-- Replace the placeholder `site` URL in `astro.config.mjs` with the production domain
+- Set `SITE_URL` in `.env` to the production domain
 - Add verified phone and email values in `src/data/site.ts`
 - Replace the temporary logo SVG with the approved logo artwork if a final file is supplied
 - Replace gallery placeholders with verified factory or product photography
