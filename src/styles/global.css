@@ -1842,14 +1842,28 @@ p {
 
 .footer-bottom {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  gap: 0.5rem 1.25rem;
   text-align: center;
   margin-top: 2rem;
   padding-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   color: rgba(255, 255, 255, 0.58);
   font-size: 0.9rem;
+}
+
+.footer-credit a {
+  min-height: 0;
+  margin-left: 0.25rem;
+  color: rgba(255, 255, 255, 0.82);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.footer-credit a:hover {
+  color: var(--white);
 }
 
 .error-shell {
@@ -2143,6 +2157,16 @@ p {
   gap: 1.25rem;
 }
 
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.value-grid--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .value-item {
   padding: 1.1rem 1.2rem;
   border-left: 3px solid var(--blue);
@@ -2159,6 +2183,13 @@ p {
   margin: 0;
   color: var(--muted);
   font-size: 0.95rem;
+}
+
+@media (max-width: 760px) {
+  .value-grid,
+  .value-grid--two {
+    grid-template-columns: 1fr;
+  }
 }
 
 .callout-simple {
@@ -2179,6 +2210,43 @@ p {
 
 .prose-narrow {
   max-width: 42rem;
+}
+
+.foreword {
+  max-width: 44rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border-left: 4px solid var(--blue);
+  background: var(--ivory);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.foreword h2 {
+  margin: 0.35rem 0 1.1rem;
+  font-size: clamp(1.55rem, 3vw, 2.1rem);
+}
+
+.foreword p {
+  margin: 0 0 1rem;
+  color: var(--ink);
+}
+
+.foreword p:last-of-type {
+  margin-bottom: 1.35rem;
+}
+
+.foreword-author {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.foreword-author strong {
+  color: var(--navy);
+  font-size: 1.02rem;
+}
+
+.foreword-author span {
+  color: var(--muted);
+  font-size: 0.92rem;
 }
 
 .prose-narrow .btn {

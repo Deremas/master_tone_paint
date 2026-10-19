@@ -23,7 +23,7 @@ export const company = {
   businessModel: 'Manufacturing and wholesale supply',
   shortDescription:
     'Ethiopian manufacturer of paints and finishing materials for distributors, contractors, and developers.',
-  phone: '',
+  phones: [] as string[],
   email: '',
   vision:
     'To become a trusted brand in the Ethiopian and African construction landscape, recognized for quality construction materials and chemicals.',
@@ -37,7 +37,7 @@ export const company = {
     machines: '5 production machines',
     site: '2,000+ m² factory'
   }
-} as const;
+};
 
 /** Four primary links — Hick’s Law: fewer choices, faster decisions. */
 export const navigation = [
@@ -79,6 +79,17 @@ export const aboutSections = {
     'We supply wholesale distributors, construction companies, and real estate developers across Addis Ababa, with delivery from our own fleet.'
 } as const;
 
+export const foreword = {
+  title: 'Colouring Ethiopia’s Growth.',
+  paragraphs: [
+    'For close to a decade, my partners and I have each stood at a different point of Ethiopia’s construction supply chain. As a distributor, I have supplied the sector with gypsum, paints, and plywood. One of my co-founders, Bekele Sorsa, has spent those years as a contractor on site after site, while Habib Mohammed has built the distribution of Rehamer Paints in Ethiopia. Each of us came to know the same market from a different side.',
+    'Between us, we kept arriving at the same observation. Ethiopia’s construction sector is expanding at a remarkable pace, yet quality paint, manufactured locally and sold at a price the public can afford, remained harder to find than it should be. That realization became Master Tone Paint PLC, established on 24 April 2024 — to manufacture paints and finishing materials here in Ethiopia, to a standard we would trust on our own projects, and at prices that keep quality within everyone’s reach.',
+    'We are only at the beginning of this journey. We invite our distributors, partners and clients to grow with us as we work to make Master Tone a trusted name in Ethiopia’s construction landscape and beyond.'
+  ],
+  author: 'Birtukan Atemew',
+  role: 'Co-Founder, Master Tone Paint PLC'
+} as const;
+
 export const values = [
   {
     title: 'Consistent Quality',
@@ -91,6 +102,36 @@ export const values = [
   {
     title: 'Reliable Supply',
     text: 'Own fleet, on-site warehouse, and direct delivery to wholesalers across Addis Ababa.'
+  }
+] as const;
+
+export const coreValues = [
+  {
+    title: 'Community-Centric',
+    text: 'We serve Ethiopia’s construction needs with world-standard products at affordable prices, and grow with the distributors and resellers who rely on us.'
+  },
+  {
+    title: 'Integrity',
+    text: 'Every commitment on quality, delivery, or price is one we intend to keep — guided by a decade of honest dealings in the sector.'
+  },
+  {
+    title: 'Transparency',
+    text: 'We are open about how products are made, what they do, and how they should be used, so partners can decide with confidence.'
+  },
+  {
+    title: 'Accountability',
+    text: 'We do not offer products we have not first trusted ourselves. Every litre that leaves the factory is held to that standard.'
+  }
+] as const;
+
+export const futureExpansion = [
+  {
+    title: 'In-House Quartz Milling',
+    text: 'Install milling machines to process locally sourced quartz on site — reducing reliance on purchased milled material and strengthening a more self-sufficient supply chain.'
+  },
+  {
+    title: 'Broader Product Portfolio',
+    text: 'Introduce epoxy floor and protective coatings for factories, warehouses, hospitals, parking areas, and commercial spaces — so partners can source more from one local manufacturer.'
   }
 ] as const;
 

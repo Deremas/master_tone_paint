@@ -1,5 +1,7 @@
 ---
 import { company, footerLinks } from '../data/content';
+
+const phoneHref = (phone: string) => `tel:${phone.replace(/\s+/g, '')}`;
 ---
 <footer class="footer">
   <div class="container footer-grid footer-grid--three">
@@ -21,11 +23,19 @@ import { company, footerLinks } from '../data/content';
     <div>
       <h3 class="footer-heading">Contact</h3>
       <p>{company.location}</p>
+      {company.phones.map((phone) => (
+        <a href={phoneHref(phone)}>{phone}</a>
+      ))}
+      {company.email && <a href={`mailto:${company.email}`}>{company.email}</a>}
       <a href="/contact/#inquiry-form">Request a Quote</a>
     </div>
   </div>
 
   <div class="container footer-bottom">
     <span>© {new Date().getFullYear()} {company.name}. All rights reserved.</span>
+    <span class="footer-credit">
+      Built by
+      <a href="https://blueoceancreatives.com" rel="noopener noreferrer">Blue Ocean Creatives</a>
+    </span>
   </div>
 </footer>

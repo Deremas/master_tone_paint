@@ -1,7 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
-import { aboutSections, company, seo, stats } from '../data/content';
+import {
+  aboutSections,
+  company,
+  coreValues,
+  foreword,
+  futureExpansion,
+  seo,
+  stats
+} from '../data/content';
 ---
 <Base title="About" description={seo.aboutDescription}>
   <PageHero
@@ -11,6 +19,25 @@ import { aboutSections, company, seo, stats } from '../data/content';
   />
 
   <section class="section">
+    <div class="container" data-reveal>
+      <article class="foreword">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Co-Founder Message
+        </div>
+        <h2>{foreword.title}</h2>
+        {foreword.paragraphs.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+        <footer class="foreword-author">
+          <strong>{foreword.author}</strong>
+          <span>{foreword.role}</span>
+        </footer>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section-soft">
     <div class="container prose-narrow" data-reveal>
       <div class="eyebrow">
         <span class="eyebrow-dot"></span>
@@ -22,7 +49,7 @@ import { aboutSections, company, seo, stats } from '../data/content';
     </div>
   </section>
 
-  <section class="section section-soft">
+  <section class="section">
     <div class="container split-grid">
       <article class="split-card" data-reveal>
         <div class="eyebrow">
@@ -38,6 +65,27 @@ import { aboutSections, company, seo, stats } from '../data/content';
         </div>
         <p>{company.mission}</p>
       </article>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container">
+      <div class="section-title section-title--stack" data-reveal>
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Core Values
+        </div>
+        <h2>What guides how we work.</h2>
+      </div>
+
+      <div class="value-grid">
+        {coreValues.map((item) => (
+          <article class="value-item" data-reveal>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
@@ -76,6 +124,32 @@ import { aboutSections, company, seo, stats } from '../data/content';
         <li>Construction companies</li>
         <li>Real estate developers</li>
       </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title section-title--stack" data-reveal>
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Future Expansion
+        </div>
+        <h2>Where we are headed next.</h2>
+      </div>
+
+      <div class="value-grid value-grid--two">
+        {futureExpansion.map((item) => (
+          <article class="value-item" data-reveal>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose-narrow" data-reveal>
       <a class="btn btn-primary" href="/contact/#inquiry-form">Contact Us</a>
     </div>
   </section>

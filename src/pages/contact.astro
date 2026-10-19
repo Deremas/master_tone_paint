@@ -20,17 +20,23 @@ import { company, contactTopics, seo } from '../data/content';
         <h2>{company.location}</h2>
         <p>Factory and warehouse in Ayat Tafo, Addis Ababa. Delivery across the city with our own fleet.</p>
 
-        {company.phone && (
+        {company.phones.length > 0 && (
           <div class="contact-item">
             <strong>Phone</strong>
-            <p>{company.phone}</p>
+            {company.phones.map((phone) => (
+              <p>
+                <a href={`tel:${phone.replace(/\s+/g, '')}`}>{phone}</a>
+              </p>
+            ))}
           </div>
         )}
 
         {company.email && (
           <div class="contact-item">
             <strong>Email</strong>
-            <p>{company.email}</p>
+            <p>
+              <a href={`mailto:${company.email}`}>{company.email}</a>
+            </p>
           </div>
         )}
       </aside>
