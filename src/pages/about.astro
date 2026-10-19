@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
-import { aboutSections, company, seo } from '../data/content';
+import { aboutSections, company, seo, stats } from '../data/content';
 ---
 <Base title="About" description={seo.aboutDescription}>
   <PageHero
@@ -11,96 +11,72 @@ import { aboutSections, company, seo } from '../data/content';
   />
 
   <section class="section">
-    <div class="container about-split" data-reveal>
-      <div class="story-panel">
+    <div class="container prose-narrow" data-reveal>
+      <div class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        Who We Are
+      </div>
+      <h2>An Ethiopian manufacturer with roots in the supply chain.</h2>
+      <p>{aboutSections.whoWeAre}</p>
+      <p>{aboutSections.whatWeDo}</p>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="container split-grid">
+      <article class="split-card" data-reveal>
         <div class="eyebrow">
           <span class="eyebrow-dot"></span>
-          Who We Are
+          Vision
         </div>
-        <h2>A focused manufacturing business in Addis Ababa.</h2>
-        <p>{aboutSections.whoWeAre}</p>
-        <p>Its work centers on general paint, metal paint, and decorative quartz wall coatings for wholesale buyers who need a straightforward manufacturing partner.</p>
+        <p>{company.vision}</p>
+      </article>
+      <article class="split-card" data-reveal>
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Mission
+        </div>
+        <p>{company.mission}</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title section-title--stack" data-reveal>
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Capacity
+        </div>
+        <h2>Factory at a glance</h2>
+        <p>{aboutSections.capabilities}</p>
       </div>
 
-      <div class="photo-frame photo-frame--tall">
-        <img
-          src="/assets/photos/about-manufacturing.png"
-          alt="Industrial paint manufacturing environment"
-          loading="eager"
-          decoding="async"
-        />
+      <div class="stats-grid stats-grid--three">
+        {stats.map((stat) => (
+          <article class="stat-card" data-reveal>
+            <strong>{stat.value}</strong>
+            <span>{stat.label}</span>
+          </article>
+        ))}
       </div>
     </div>
   </section>
 
   <section class="section section-soft">
-    <div class="container">
-      <div class="section-title" data-reveal>
-        <div>
-          <div class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            Our Manufacturing Capabilities
-          </div>
-          <h2>Built around efficient wholesale supply.</h2>
-        </div>
-        <p>Production is centered on a compact machine setup that supports the company’s core categories.</p>
+    <div class="container prose-narrow" data-reveal>
+      <div class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        Who We Serve
       </div>
-
-      <div class="feature-grid">
-        <article class="feature-card" data-reveal>
-          <strong>02</strong>
-          <h3>Paint manufacturing machines</h3>
-          <p>Two machines are dedicated to general paint and metal paint production.</p>
-        </article>
-
-        <article class="feature-card" data-reveal>
-          <strong>01</strong>
-          <h3>Decorative quartz machine</h3>
-          <p>One machine is dedicated to decorative quartz coating manufacturing.</p>
-        </article>
-
-        <article class="feature-card" data-reveal>
-          <strong>{company.capacities.paintTotal}</strong>
-          <h3>Total paint capacity</h3>
-          <p>{aboutSections.capabilities}</p>
-        </article>
-
-        <article class="feature-card" data-reveal>
-          <strong>{company.capacities.quartz}</strong>
-          <h3>Decorative quartz capacity</h3>
-          <p>The decorative quartz coating line supports a daily output of {company.capacities.quartz}.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container split-grid">
-      <article class="split-card" data-reveal>
-        <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          Our Products
-        </div>
-        <h2>Three product categories.</h2>
-        <p>{aboutSections.products}</p>
-        <ul class="stack-list">
-          <li>General Paint</li>
-          <li>Metal Paint</li>
-          <li>Decorative Quartz Coating</li>
-        </ul>
-      </article>
-
-      <article class="split-card" data-reveal>
-        <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          Wholesale Supply
-        </div>
-        <h2>Ask about product supply and order requirements.</h2>
-        <p>{aboutSections.wholesale}</p>
-        <a class="btn btn-primary" href="/contact/#inquiry-form">Contact Our Team</a>
-      </article>
+      <h2>Partners across the construction chain.</h2>
+      <p>{aboutSections.customers}</p>
+      <ul class="stack-list">
+        <li>Wholesale distributors</li>
+        <li>Construction companies</li>
+        <li>Real estate developers</li>
+      </ul>
+      <a class="btn btn-primary" href="/contact/#inquiry-form">Contact Us</a>
     </div>
   </section>
 </Base>
-
-

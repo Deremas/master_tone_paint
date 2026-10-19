@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 760 220"
+  role="img"
+  aria-labelledby="title desc"
+>
+  <title id="title">Master Tone Paint logo</title>
+  <desc id="desc">Color logo mark for Master Tone Paint with navy, blue, gold, and ivory tones.</desc>
+  <defs>
+    <linearGradient id="paintGradient" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#102D4E" />
+      <stop offset="55%" stop-color="#1D78B5" />
+      <stop offset="100%" stop-color="#C89A33" />
+    </linearGradient>
+    <linearGradient id="dropGradient" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0%" stop-color="#F7F8F5" />
+      <stop offset="100%" stop-color="#E3A94C" />
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(34 34)">
+    <circle cx="76" cy="76" r="76" fill="url(#paintGradient)" />
+    <path
+      d="M78 24c20 23 33 42 39 57 8 20 5 40-7 56-12 15-28 24-47 24s-35-9-47-24c-12-16-15-36-7-56 6-15 19-34 39-57 5-6 13-6 19 0z"
+      fill="url(#dropGradient)"
+    />
+    <path
+      d="M38 103c14-7 28-11 40-11 16 0 30 4 44 12-8 25-25 39-44 39-19 0-35-14-40-40z"
+      fill="#102D4E"
+      opacity="0.9"
+    />
+    <path
+      d="M56 80c11-19 24-33 39-45"
+      fill="none"
+      stroke="#1D78B5"
+      stroke-width="11"
+      stroke-linecap="round"
+    />
+    <circle cx="112" cy="54" r="9" fill="#C89A33" />
+    <circle cx="50" cy="44" r="7" fill="#F7F8F5" />
+    <path d="M106 128l17 8-13 17-16-8z" fill="#C89A33" />
+  </g>
+
+  <g transform="translate(210 58)">
+    <text
+      x="0"
+      y="0"
+      fill="#102D4E"
+      font-family="Manrope, 'Plus Jakarta Sans', Arial, sans-serif"
+      font-size="29"
+      font-weight="800"
+      letter-spacing="5"
+    >MASTER TONE</text>
+    <text
+      x="0"
+      y="54"
+      fill="#1D78B5"
+      font-family="Manrope, 'Plus Jakarta Sans', Arial, sans-serif"
+      font-size="52"
+      font-weight="900"
+      letter-spacing="3"
+    >PAINT</text>
+    <rect x="2" y="76" width="212" height="7" rx="999" fill="url(#paintGradient)" />
+    <text
+      x="0"
+      y="108"
+      fill="#51657A"
+      font-family="Manrope, 'Plus Jakarta Sans', Arial, sans-serif"
+      font-size="18"
+      font-weight="700"
+      letter-spacing="2.4"
+    >AYAT - ADDIS ABABA</text>
+  </g>
+</svg>
+

@@ -2,11 +2,11 @@
 import { company, footerLinks } from '../data/content';
 ---
 <footer class="footer">
-  <div class="container footer-grid">
+  <div class="container footer-grid footer-grid--three">
     <div>
-      <p class="footer-name">{company.name}</p>
+      <p class="footer-name">{company.shortName}</p>
+      <p class="footer-note">{company.tagline}</p>
       <p class="footer-note">{company.shortDescription}</p>
-      <p class="footer-note">{company.businessModel}</p>
     </div>
 
     <div>
@@ -21,9 +21,8 @@ import { company, footerLinks } from '../data/content';
     <div>
       <h3 class="footer-heading">Contact</h3>
       <p>{company.location}</p>
-      <a href="/contact/#inquiry-form">Send an Inquiry</a>
+      <a href="/contact/#inquiry-form">Request a Quote</a>
     </div>
-
   </div>
 
   <div class="container footer-bottom">

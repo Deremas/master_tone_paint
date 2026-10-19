@@ -19,7 +19,9 @@ const {
 const siteUrl = Astro.site?.toString() ?? 'https://example.com';
 const canonical = new URL(canonicalPath, siteUrl).toString();
 const socialImage = new URL('/assets/photos/home-hero.png', siteUrl).toString();
-const fullTitle = title ? `${title} | ${company.name}` : `${company.name} | Paint & Decorative Coating Manufacturer`;
+const fullTitle = title
+  ? `${title} | ${company.shortName}`
+  : `${company.shortName} | ${company.tagline}`;
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -29,7 +31,7 @@ const jsonLd = {
   foundingDate: company.foundedDate,
   address: {
     '@type': 'PostalAddress',
-    addressLocality: 'Ayat, Addis Ababa',
+    addressLocality: 'Ayat Tafo, Addis Ababa',
     addressCountry: 'ET'
   }
 };

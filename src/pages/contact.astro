@@ -1,66 +1,44 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
-import { company, contactImage, contactTopics, seo } from '../data/content';
+import { company, contactTopics, seo } from '../data/content';
 ---
 <Base title="Contact" description={seo.contactDescription}>
   <PageHero
-    eyebrow="Contact Master Tone Paint"
-    title="Let's Bring Your Project to Life."
-    intro="Contact Master Tone Paint for product information, wholesale inquiries and decorative coating requirements."
+    eyebrow="Contact"
+    title="Request a Quote"
+    intro="Tell us what you need. We supply distributors, contractors, and developers."
   />
 
   <section class="section">
-    <div class="container contact-grid">
-      <div class="contact-stack" data-reveal>
-        <article class="contact-card">
-          <div class="photo-frame photo-frame--contact">
-            <img
-              src={`/assets/photos/${contactImage.imageSlug}.png`}
-              alt={contactImage.imageAlt}
-              loading="eager"
-              decoding="async"
-            />
+    <div class="container contact-grid contact-grid--simple">
+      <aside class="contact-aside" data-reveal>
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Location
+        </div>
+        <h2>{company.location}</h2>
+        <p>Factory and warehouse in Ayat Tafo, Addis Ababa. Delivery across the city with our own fleet.</p>
+
+        {company.phone && (
+          <div class="contact-item">
+            <strong>Phone</strong>
+            <p>{company.phone}</p>
           </div>
+        )}
 
-          <div class="eyebrow" style="margin-top: 1.25rem;">
-            <span class="eyebrow-dot"></span>
-            Company Location
+        {company.email && (
+          <div class="contact-item">
+            <strong>Email</strong>
+            <p>{company.email}</p>
           </div>
-          <h2>Ayat, Addis Ababa</h2>
-          <p>Wholesale inquiries are welcome for general paint, metal paint, and decorative quartz wall coatings.</p>
-          <p>{company.location}</p>
-
-          {company.phone && (
-            <div class="contact-item">
-              <div class="contact-icon" aria-hidden="true">☎</div>
-              <div>
-                <strong>Phone</strong>
-                <p>{company.phone}</p>
-              </div>
-            </div>
-          )}
-
-          {company.email && (
-            <div class="contact-item">
-              <div class="contact-icon" aria-hidden="true">✉</div>
-              <div>
-                <strong>Email</strong>
-                <p>{company.email}</p>
-              </div>
-            </div>
-          )}
-        </article>
-      </div>
+        )}
+      </aside>
 
       <form class="contact-form" id="inquiry-form" action="/api/contact.php" method="post" data-reveal>
         <div>
-          <div class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            Inquiry Form
-          </div>
-          <h2>Send Message</h2>
-          <p>Tell us what you need and we will follow up on the product category or wholesale inquiry.</p>
+          <h2>Send a message</h2>
+          <p>Share the product and quantity you need. Fields marked * are required.</p>
         </div>
 
         <div class="form-grid">
@@ -96,7 +74,7 @@ import { company, contactImage, contactTopics, seo } from '../data/content';
               required
               minlength="10"
               maxlength="3000"
-              placeholder="Tell us about the products you need, the quantity you are considering, or any other details that help us respond well."
+              placeholder="Product, approximate volume, and any delivery notes."
             ></textarea>
           </div>
         </div>
@@ -121,25 +99,15 @@ import { company, contactImage, contactTopics, seo } from '../data/content';
     const productField = document.getElementById('product') as HTMLSelectElement | null;
     const url = new URL(window.location.href);
     const selectedProduct = url.searchParams.get('product');
-    const normalizedProduct = selectedProduct === 'decorative-quartz-coating' ? 'decorative-quartz' : selectedProduct;
 
-    const validProductValues = new Set([
-      '',
-      'general-paint',
-      'metal-paint',
-      'decorative-quartz',
-      'decorative-quartz-coating',
-      'wholesale-inquiry',
-      'other'
-    ]);
+    const validProductValues = new Set(Array.from(productField?.options ?? []).map((option) => option.value));
 
-    if (productField && normalizedProduct && validProductValues.has(normalizedProduct)) {
-      productField.value = normalizedProduct;
+    if (productField && selectedProduct && validProductValues.has(selectedProduct)) {
+      productField.value = selectedProduct;
     }
 
     const setStatus = (message: string, state: 'idle' | 'success' | 'error' = 'idle') => {
       if (!status) return;
-
       status.textContent = message;
       status.dataset.state = state;
     };
@@ -161,9 +129,7 @@ import { company, contactImage, contactTopics, seo } from '../data/content';
         const response = await fetch(form.action, {
           method: 'POST',
           body: new FormData(form),
-          headers: {
-            Accept: 'application/json'
-          }
+          headers: { Accept: 'application/json' }
         });
 
         const payload = await response.json().catch(() => null);
@@ -174,8 +140,8 @@ import { company, contactImage, contactTopics, seo } from '../data/content';
 
         form.reset();
 
-        if (productField && normalizedProduct && validProductValues.has(normalizedProduct)) {
-          productField.value = normalizedProduct;
+        if (productField && selectedProduct && validProductValues.has(selectedProduct)) {
+          productField.value = selectedProduct;
         }
 
         setStatus(payload.message || 'Your message was sent successfully.', 'success');
@@ -191,5 +157,3 @@ import { company, contactImage, contactTopics, seo } from '../data/content';
     });
   </script>
 </Base>
-
-

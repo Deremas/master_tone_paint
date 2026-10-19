@@ -14,11 +14,11 @@ const isCurrent = (href: string) => {
 ---
 <header class="site-header">
   <div class="container header-inner">
-    <a class="brand" href="/" aria-label={`${company.name} home`}>
+    <a class="brand" href="/" aria-label={`${company.shortName} home`}>
       <img
         class="brand-logo"
         src="/assets/master-tone-paint.jpg"
-        alt="Master Tone Paint"
+        alt={company.shortName}
         loading="eager"
         decoding="async"
       />
