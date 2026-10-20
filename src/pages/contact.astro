@@ -25,7 +25,8 @@ import { company, contactTopics, seo } from '../data/content';
             <strong>Phone</strong>
             {company.phones.map((phone) => (
               <p>
-                {phone.label}: <a href={`tel:${phone.number.replace(/\s+/g, '')}`}>{phone.number}</a>
+                <a href={`tel:${phone.number.replace(/\s+/g, '')}`}>{phone.number}</a>
+                {phone.label && <span> ({phone.label})</span>}
               </p>
             ))}
           </div>

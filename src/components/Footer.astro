@@ -26,16 +26,26 @@ const phoneHref = (number: string) => `tel:${number.replace(/\s+/g, '')}`;
       </nav>
     </div>
 
-    <div>
+    <div class="footer-contact">
       <h3 class="footer-heading">Contact</h3>
       <p>{company.location}</p>
+
       {company.phones.map((phone) => (
-        <a href={phoneHref(phone.number)}>
-          {phone.label}: {phone.number}
-        </a>
+        <p class="footer-contact-line">
+          <span class="footer-contact-label">Phone:</span>
+          <a href={phoneHref(phone.number)}>{phone.number}</a>
+          {phone.label && <span class="footer-contact-name">({phone.label})</span>}
+        </p>
       ))}
-      {company.email && <a href={`mailto:${company.email}`}>{company.email}</a>}
-      <a href="/contact/#inquiry-form">Request a Quote</a>
+
+      {company.email && (
+        <p class="footer-contact-line">
+          <span class="footer-contact-label">Email:</span>
+          <a href={`mailto:${company.email}`}>{company.email}</a>
+        </p>
+      )}
+
+      <a class="footer-quote-link" href="/contact/#inquiry-form">Request a Quote</a>
     </div>
   </div>
 

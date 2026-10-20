@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220" fill="none">
-  <!-- Subtle droplet lattice derived from the Master Tone mark -->
-  <g opacity="0.55" stroke="#7eb3d4" stroke-width="1.2" fill="none">
+  <!-- Soft droplet lattice — keep stroke light; CSS opacity controls final strength -->
+  <g stroke="#9ec9e4" stroke-width="1.15" fill="none" opacity="0.9">
     <path d="M40 28c14 18 22 32 22 46 0 16-10 28-22 28s-22-12-22-28c0-14 8-28 22-46z"/>
     <path d="M110 28c14 18 22 32 22 46 0 16-10 28-22 28s-22-12-22-28c0-14 8-28 22-46z"/>
     <path d="M180 28c14 18 22 32 22 46 0 16-10 28-22 28s-22-12-22-28c0-14 8-28 22-46z"/>
@@ -10,11 +10,11 @@
     <path d="M110 168c14 18 22 32 22 46 0 16-10 28-22 28s-22-12-22-28c0-14 8-28 22-46z"/>
     <path d="M180 168c14 18 22 32 22 46 0 16-10 28-22 28s-22-12-22-28c0-14 8-28 22-46z"/>
   </g>
-  <g opacity="0.35" stroke="#c89a33" stroke-width="1" fill="none">
-    <circle cx="40" cy="74" r="3"/>
-    <circle cx="110" cy="74" r="3"/>
-    <circle cx="180" cy="74" r="3"/>
-    <circle cx="75" cy="144" r="3"/>
-    <circle cx="145" cy="144" r="3"/>
+  <g stroke="#d4b06a" stroke-width="1" fill="none" opacity="0.55">
+    <circle cx="40" cy="74" r="2.5"/>
+    <circle cx="110" cy="74" r="2.5"/>
+    <circle cx="180" cy="74" r="2.5"/>
+    <circle cx="75" cy="144" r="2.5"/>
+    <circle cx="145" cy="144" r="2.5"/>
   </g>
 </svg>
