@@ -48,9 +48,21 @@ export const navigation = [
 ] as const;
 
 export const stats = [
-  { value: company.capacities.total, label: 'Daily production capacity' },
-  { value: company.capacities.machines, label: 'Mixing and dispersing lines' },
-  { value: company.location, label: 'Factory location' }
+  {
+    value: company.capacities.total,
+    label: 'Daily production capacity',
+    icon: 'capacity' as const
+  },
+  {
+    value: company.capacities.machines,
+    label: 'Mixing and dispersing lines',
+    icon: 'machines' as const
+  },
+  {
+    value: company.location,
+    label: 'Factory location',
+    icon: 'location' as const
+  }
 ] as const;
 
 export const homeHighlights = {
@@ -133,12 +145,12 @@ export const coreValues = [
 
 export const futureExpansion = [
   {
-    icon: 'expansion' as const,
+    icon: 'machines' as const,
     title: 'In-House Quartz Milling',
     text: 'Install milling machines to process locally sourced quartz on site — reducing reliance on purchased milled material and strengthening a more self-sufficient supply chain.'
   },
   {
-    icon: 'expansion' as const,
+    icon: 'portfolio' as const,
     title: 'Broader Product Portfolio',
     text: 'Introduce epoxy floor and protective coatings for factories, warehouses, hospitals, parking areas, and commercial spaces — so partners can source more from one local manufacturer.'
   }

@@ -6,13 +6,16 @@ const phoneHref = (number: string) => `tel:${number.replace(/\s+/g, '')}`;
 <footer class="footer">
   <div class="container footer-grid footer-grid--three">
     <div class="footer-brand">
-      <img
-        class="footer-logo"
-        src="/assets/master-tone-paint.jpg"
-        alt={company.shortName}
-        loading="lazy"
-        decoding="async"
-      />
+      <div class="footer-brand-lockup">
+        <img
+          class="footer-logo"
+          src="/assets/master-tone-paint.jpg"
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
+        <p class="footer-name">{company.shortName}</p>
+      </div>
       <p class="footer-note">{company.tagline}</p>
       <p class="footer-note">{company.shortDescription}</p>
     </div>

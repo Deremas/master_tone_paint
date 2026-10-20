@@ -29,7 +29,7 @@ import { company, homeHighlights, products, seo, stats, values } from '../data/c
       <div class="stats-grid stats-grid--three">
         {stats.map((stat) => (
           <article class="stat-card stat-card--icon" data-reveal>
-            <SectionIcon name="capacity" />
+            <SectionIcon name={stat.icon} />
             <strong>{stat.value}</strong>
             <span>{stat.label}</span>
           </article>
