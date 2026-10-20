@@ -22,7 +22,7 @@ export const company = {
   foundedDate: '2024-04-24',
   businessModel: 'Manufacturing and wholesale supply',
   shortDescription:
-    'Ethiopian manufacturer of paints and finishing materials for distributors, contractors, and developers.',
+    'Ethiopian manufacturer of paints and finishing materials for distributors, contractors, and real estate developers.',
   phones: [{ label: 'Birtukan', number: '0911 273 068' }],
   email: '',
   vision:

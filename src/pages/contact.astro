@@ -7,7 +7,7 @@ import { company, contactTopics, seo } from '../data/content';
   <PageHero
     eyebrow="Contact"
     title="Request a Quote"
-    intro="Tell us what you need. We supply distributors, contractors, and developers."
+    intro="Tell us what you need. We supply distributors, contractors, and real estate developers."
   />
 
   <section class="section">
@@ -21,12 +21,14 @@ import { company, contactTopics, seo } from '../data/content';
         <p>Factory and warehouse in Ayat Tafo, Addis Ababa. Delivery across the city with our own fleet.</p>
 
         {company.phones.length > 0 && (
-          <div class="contact-item">
+          <div class="contact-item contact-item--phone">
             <strong>Phone</strong>
             {company.phones.map((phone) => (
-              <p>
-                <a href={`tel:${phone.number.replace(/\s+/g, '')}`}>{phone.number}</a>
-                {phone.label && <span> ({phone.label})</span>}
+              <p class="contact-phone-line">
+                <a class="contact-phone-link" href={`tel:${phone.number.replace(/\s+/g, '')}`}>
+                  {phone.number}
+                </a>
+                {phone.label && <span class="contact-phone-name"> ({phone.label})</span>}
               </p>
             ))}
           </div>

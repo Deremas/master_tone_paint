@@ -1000,6 +1000,16 @@ html[data-nav-open='true'] .site-header {
   border-radius: var(--radius-md);
   background: var(--white);
   box-shadow: var(--shadow-soft);
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+  border-color: rgba(16, 45, 78, 0.16);
 }
 
 .stat-card--icon {
@@ -1044,11 +1054,29 @@ html[data-nav-open='true'] .site-header {
   color: var(--blue);
   background: rgba(26, 127, 196, 0.14);
   flex: none;
+  transition:
+    transform 200ms ease,
+    background-color 200ms ease,
+    box-shadow 200ms ease;
 }
 
 .section-icon svg {
   width: 2.25rem;
   height: 2.25rem;
+  transition: transform 200ms ease;
+}
+
+.stat-card:hover .section-icon,
+.split-card:hover .section-icon,
+.value-item:hover .section-icon {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 10px 22px rgba(16, 45, 78, 0.1);
+}
+
+.stat-card:hover .section-icon svg,
+.split-card:hover .section-icon svg,
+.value-item:hover .section-icon svg {
+  transform: scale(1.06);
 }
 
 .section-icon--blue {
@@ -1616,6 +1644,16 @@ html[data-nav-open='true'] .site-header {
   background: var(--white);
   border: 1px solid var(--line);
   box-shadow: var(--shadow-soft);
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease;
+}
+
+.split-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+  border-color: rgba(16, 45, 78, 0.14);
 }
 
 .split-card h3 {
@@ -1810,6 +1848,26 @@ html[data-nav-open='true'] .site-header {
 .contact-item a {
   margin-top: 0.25rem;
   color: var(--muted);
+}
+
+.contact-phone-line {
+  margin: 0.25rem 0 0;
+}
+
+.contact-phone-link {
+  color: var(--blue);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.contact-phone-link:hover {
+  color: var(--navy);
+}
+
+.contact-phone-name {
+  color: var(--muted);
+  font-weight: 500;
 }
 
 .contact-form {
@@ -2470,6 +2528,16 @@ html[data-nav-open='true'] .site-header {
   border-left: 3px solid var(--blue);
   background: rgba(255, 255, 255, 0.92);
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    background-color 200ms ease;
+}
+
+.value-item:hover {
+  transform: translateY(-3px);
+  background: var(--white);
+  box-shadow: var(--shadow-soft);
 }
 
 .value-item:nth-child(5n + 1) {
