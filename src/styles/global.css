@@ -162,10 +162,20 @@ p {
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 90;
+  z-index: 110;
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(221, 227, 232, 0.9);
+}
+
+/* Keep header pinned while scroll-lock is on (sticky can unstick with overflow:hidden) */
+html[data-nav-open='true'] .site-header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  width: 100%;
+  background: var(--white);
 }
 
 .header-inner {
@@ -419,11 +429,8 @@ p {
 
 .mobile-nav-layer {
   position: fixed;
-  left: 0;
-  right: 0;
-  top: var(--header-height);
-  z-index: 80;
-  height: calc(100dvh - var(--header-height));
+  inset: 0;
+  z-index: 100;
   pointer-events: none;
   min-width: 0;
 }
@@ -436,7 +443,7 @@ p {
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: rgb(10 25 45 / 0.65);
+  background: rgb(10 25 45 / 0.82);
   opacity: 0;
   transition: opacity 280ms ease;
 }
@@ -448,11 +455,11 @@ p {
 .mobile-nav-panel {
   position: absolute;
   inset-inline: 0;
-  top: 0;
+  top: var(--header-height);
   display: grid;
   z-index: 2;
   width: 100%;
-  max-height: 100%;
+  max-height: calc(100dvh - var(--header-height));
   background: var(--white);
   color: var(--navy);
   border-bottom: 1px solid rgba(16, 45, 78, 0.12);
@@ -2073,6 +2080,18 @@ p {
 @media (max-width: 1023px) {
   :root {
     --header-height: 76px;
+  }
+
+  body {
+    padding-top: var(--header-height);
+  }
+
+  .site-header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
   }
 
   .nav-desktop {
