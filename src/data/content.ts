@@ -23,7 +23,7 @@ export const company = {
   businessModel: 'Manufacturing and wholesale supply',
   shortDescription:
     'Ethiopian manufacturer of paints and finishing materials for distributors, contractors, and developers.',
-  phones: [] as string[],
+  phones: [{ label: 'Birtukan', number: '0911 273 068' }],
   email: '',
   vision:
     'To become a trusted brand in the Ethiopian and African construction landscape, recognized for quality construction materials and chemicals.',
@@ -92,14 +92,17 @@ export const foreword = {
 
 export const values = [
   {
+    icon: 'quality' as const,
     title: 'Consistent Quality',
     text: 'Every batch is checked before it leaves the factory. Volume never comes before standard.'
   },
   {
+    icon: 'price' as const,
     title: 'Affordable Price',
     text: 'Local manufacturing and our own distribution keep quality finishes within reach.'
   },
   {
+    icon: 'supply' as const,
     title: 'Reliable Supply',
     text: 'Own fleet, on-site warehouse, and direct delivery to wholesalers across Addis Ababa.'
   }
@@ -107,18 +110,22 @@ export const values = [
 
 export const coreValues = [
   {
+    icon: 'community' as const,
     title: 'Community-Centric',
     text: 'We serve Ethiopia’s construction needs with world-standard products at affordable prices, and grow with the distributors and resellers who rely on us.'
   },
   {
+    icon: 'integrity' as const,
     title: 'Integrity',
     text: 'Every commitment on quality, delivery, or price is one we intend to keep — guided by a decade of honest dealings in the sector.'
   },
   {
+    icon: 'transparency' as const,
     title: 'Transparency',
     text: 'We are open about how products are made, what they do, and how they should be used, so partners can decide with confidence.'
   },
   {
+    icon: 'accountability' as const,
     title: 'Accountability',
     text: 'We do not offer products we have not first trusted ourselves. Every litre that leaves the factory is held to that standard.'
   }
@@ -126,10 +133,12 @@ export const coreValues = [
 
 export const futureExpansion = [
   {
+    icon: 'expansion' as const,
     title: 'In-House Quartz Milling',
     text: 'Install milling machines to process locally sourced quartz on site — reducing reliance on purchased milled material and strengthening a more self-sufficient supply chain.'
   },
   {
+    icon: 'expansion' as const,
     title: 'Broader Product Portfolio',
     text: 'Introduce epoxy floor and protective coatings for factories, warehouses, hospitals, parking areas, and commercial spaces — so partners can source more from one local manufacturer.'
   }

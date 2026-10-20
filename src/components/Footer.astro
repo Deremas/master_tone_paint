@@ -1,12 +1,18 @@
 ---
 import { company, footerLinks } from '../data/content';
 
-const phoneHref = (phone: string) => `tel:${phone.replace(/\s+/g, '')}`;
+const phoneHref = (number: string) => `tel:${number.replace(/\s+/g, '')}`;
 ---
 <footer class="footer">
   <div class="container footer-grid footer-grid--three">
-    <div>
-      <p class="footer-name">{company.shortName}</p>
+    <div class="footer-brand">
+      <img
+        class="footer-logo"
+        src="/assets/master-tone-paint.jpg"
+        alt={company.shortName}
+        loading="lazy"
+        decoding="async"
+      />
       <p class="footer-note">{company.tagline}</p>
       <p class="footer-note">{company.shortDescription}</p>
     </div>
@@ -24,7 +30,9 @@ const phoneHref = (phone: string) => `tel:${phone.replace(/\s+/g, '')}`;
       <h3 class="footer-heading">Contact</h3>
       <p>{company.location}</p>
       {company.phones.map((phone) => (
-        <a href={phoneHref(phone)}>{phone}</a>
+        <a href={phoneHref(phone.number)}>
+          {phone.label}: {phone.number}
+        </a>
       ))}
       {company.email && <a href={`mailto:${company.email}`}>{company.email}</a>}
       <a href="/contact/#inquiry-form">Request a Quote</a>

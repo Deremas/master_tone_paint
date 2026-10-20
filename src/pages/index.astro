@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import ProductCard from '../components/ProductCard.astro';
+import SectionIcon from '../components/SectionIcon.astro';
 import { company, homeHighlights, products, seo, stats, values } from '../data/content';
 ---
 <Base title="Home" description={seo.homeDescription}>
@@ -23,11 +24,12 @@ import { company, homeHighlights, products, seo, stats, values } from '../data/c
   </section>
 
   <!-- Chunking: three capacity facts only -->
-  <section class="section section--tight">
+  <section class="section section--tight section-pattern">
     <div class="container">
       <div class="stats-grid stats-grid--three">
         {stats.map((stat) => (
-          <article class="stat-card" data-reveal>
+          <article class="stat-card stat-card--icon" data-reveal>
+            <SectionIcon name="capacity" />
             <strong>{stat.value}</strong>
             <span>{stat.label}</span>
           </article>
@@ -36,7 +38,7 @@ import { company, homeHighlights, products, seo, stats, values } from '../data/c
     </div>
   </section>
 
-  <section class="section section-soft">
+  <section class="section section-soft section-pattern">
     <div class="container">
       <div class="section-title section-title--stack" data-reveal>
         <div class="eyebrow">
@@ -55,7 +57,7 @@ import { company, homeHighlights, products, seo, stats, values } from '../data/c
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section-pattern">
     <div class="container about-brief" data-reveal>
       <div>
         <div class="eyebrow">
@@ -73,6 +75,7 @@ import { company, homeHighlights, products, seo, stats, values } from '../data/c
       <div class="value-list">
         {values.map((item) => (
           <article class="value-item">
+            <SectionIcon name={item.icon} />
             <h3>{item.title}</h3>
             <p>{item.text}</p>
           </article>

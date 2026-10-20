@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
+import SectionIcon from '../components/SectionIcon.astro';
 import {
   aboutSections,
   company,
@@ -18,7 +19,7 @@ import {
     intro={aboutSections.introduction}
   />
 
-  <section class="section">
+  <section class="section section-pattern">
     <div class="container" data-reveal>
       <article class="foreword">
         <div class="eyebrow">
@@ -37,7 +38,7 @@ import {
     </div>
   </section>
 
-  <section class="section section-soft">
+  <section class="section section-soft section-pattern">
     <div class="container prose-narrow" data-reveal>
       <div class="eyebrow">
         <span class="eyebrow-dot"></span>
@@ -49,16 +50,18 @@ import {
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section-pattern">
     <div class="container split-grid">
-      <article class="split-card" data-reveal>
+      <article class="split-card split-card--icon" data-reveal>
+        <SectionIcon name="vision" />
         <div class="eyebrow">
           <span class="eyebrow-dot"></span>
           Vision
         </div>
         <p>{company.vision}</p>
       </article>
-      <article class="split-card" data-reveal>
+      <article class="split-card split-card--icon" data-reveal>
+        <SectionIcon name="mission" />
         <div class="eyebrow">
           <span class="eyebrow-dot"></span>
           Mission
@@ -68,7 +71,7 @@ import {
     </div>
   </section>
 
-  <section class="section section-soft">
+  <section class="section section-soft section-pattern">
     <div class="container">
       <div class="section-title section-title--stack" data-reveal>
         <div class="eyebrow">
@@ -81,6 +84,7 @@ import {
       <div class="value-grid">
         {coreValues.map((item) => (
           <article class="value-item" data-reveal>
+            <SectionIcon name={item.icon} />
             <h3>{item.title}</h3>
             <p>{item.text}</p>
           </article>
@@ -89,7 +93,7 @@ import {
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section-pattern">
     <div class="container">
       <div class="section-title section-title--stack" data-reveal>
         <div class="eyebrow">
@@ -102,7 +106,8 @@ import {
 
       <div class="stats-grid stats-grid--three">
         {stats.map((stat) => (
-          <article class="stat-card" data-reveal>
+          <article class="stat-card stat-card--icon" data-reveal>
+            <SectionIcon name="capacity" />
             <strong>{stat.value}</strong>
             <span>{stat.label}</span>
           </article>
@@ -111,7 +116,7 @@ import {
     </div>
   </section>
 
-  <section class="section section-soft">
+  <section class="section section-soft section-pattern">
     <div class="container prose-narrow" data-reveal>
       <div class="eyebrow">
         <span class="eyebrow-dot"></span>
@@ -127,7 +132,7 @@ import {
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section-pattern">
     <div class="container">
       <div class="section-title section-title--stack" data-reveal>
         <div class="eyebrow">
@@ -140,6 +145,7 @@ import {
       <div class="value-grid value-grid--two">
         {futureExpansion.map((item) => (
           <article class="value-item" data-reveal>
+            <SectionIcon name={item.icon} />
             <h3>{item.title}</h3>
             <p>{item.text}</p>
           </article>
